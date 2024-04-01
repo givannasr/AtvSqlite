@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { SafeAreaView, Text, StyleSheet, TextInput, TouchableOpacity, Button, View } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
@@ -21,7 +21,7 @@ export default function Pesquisar() {
     async function getFilme() {
         db.transaction(tx => {
             tx.executeSql(
-                'SELECT * FROM filmes WHERE nome=?;',
+                'SELECT * FROM filmes WHERE nome=?',
                 [nomePesq],
                 (_, { rows }) => {
                     setFilme(rows._array);

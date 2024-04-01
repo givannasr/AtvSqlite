@@ -59,7 +59,7 @@ export default function Cadastrar() {
             })
         } else if (operacao === 'Editar') {
             db.transaction(tx => {
-                tx.executeSql('UPDATE filmes SET nome = ? WHERE id=?;',
+                tx.executeSql('UPDATE filmes SET nome =? WHERE id=?;',
                     [nome, id],
                     (_, rowsAffected) => {
                         Alert.alert('Info', 'Registro alterado com sucesso!')
@@ -182,9 +182,6 @@ export default function Cadastrar() {
                         }
                     </View>
                 </ScrollView>
-
-
-
             </View>
             <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
             <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
@@ -229,17 +226,19 @@ const styles = StyleSheet.create({
         padding: 15,
         width:300,
         height:'40%',
-        borderWidth: 2
-
+        borderWidth: 2,
+        justifyContent:'center',
+        margin:5
     },
     containerScroll:{
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: 'black',
-        borderRadius: 5,
-        padding: 15,
-        width:300,
-        height:'95%',
-        borderWidth: 2
+        borderRadius: 20,
+        padding: 20,
+        width:'100%',
+        height:'100%',
+        alignItems:'center',
+        gap:10
     },
     alignLeft: {
         alignItems: 'center',
