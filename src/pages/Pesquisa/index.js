@@ -21,7 +21,7 @@ export default function Pesquisar() {
     async function getFilme() {
         db.transaction(tx => {
             tx.executeSql(
-                'SELECT * FROM filmes WHERE nome=?',
+                'SELECT * FROM filmes WHERE nome_filme LIKE ?',
                 [nomePesq],
                 (_, { rows }) => {
                     setFilme(rows._array);

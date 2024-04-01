@@ -6,7 +6,6 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 // import 'react-dropdown/style.css';
 
 import { DatabaseConnection } from '../Config/db';
-
 const db = new DatabaseConnection.getConnection;
 
 export default function Cadastrar() {
@@ -59,8 +58,8 @@ export default function Cadastrar() {
             })
         } else if (operacao === 'Editar') {
             db.transaction(tx => {
-                tx.executeSql('UPDATE filmes SET nome =? WHERE id=?;',
-                    [nome, id],
+                tx.executeSql('UPDATE filmes SET nome_filme=? , classificacao=?, genero=? WHERE id=?;',
+                    [nome, classificacao, genero, id],
                     (_, rowsAffected) => {
                         Alert.alert('Info', 'Registro alterado com sucesso!')
                         setNome('');
@@ -184,7 +183,7 @@ export default function Cadastrar() {
                 </ScrollView>
             </View>
             <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
-            <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
+                <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
             </TouchableOpacity>
         </SafeAreaView>
     )
@@ -200,15 +199,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 10,
-        padding:10
+        padding: 10
     },
     inputText: {
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 5,
         padding: 5,
-        width:300,
-        height:'5%'
+        width: 300,
+        height: '5%'
     },
     cardTitle: {
         paddingTop: 30,
@@ -224,21 +223,21 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderRadius: 5,
         padding: 15,
-        width:300,
-        height:'40%',
+        width: 300,
+        height: '40%',
         borderWidth: 2,
-        justifyContent:'center',
-        margin:5
+        justifyContent: 'center',
+        margin: 5
     },
-    containerScroll:{
+    containerScroll: {
         borderWidth: 2,
         borderColor: 'black',
         borderRadius: 20,
         padding: 20,
-        width:'100%',
-        height:'100%',
-        alignItems:'center',
-        gap:10
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        gap: 10
     },
     alignLeft: {
         alignItems: 'center',
@@ -246,8 +245,8 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'auto',
         paddingLeft: '70%',
-        gap:5,
-        flexDirection:'row',
-        justifyContent:'flex-start',
+        gap: 5,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
 });
