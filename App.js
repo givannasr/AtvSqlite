@@ -22,11 +22,11 @@ export default function App() {
           component={Lista}
         />
         <Stack.Screen
-          name='Cadastro'
+          name='Cadastrar'
           component={Cadastro}
         />
         <Stack.Screen
-          name='Pesquisa'
+          name='Pesquisar'
           component={Pesquisa}
         />
       </Stack.Navigator>

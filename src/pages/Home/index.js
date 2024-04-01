@@ -7,15 +7,18 @@ export default function Home() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Bem-Vindo(a)</Text>
+            <Text style={styles.text}>Bem-Vindo(a)</Text>
+            <Text>Cadastrar um novo filme:</Text>
             <TouchableOpacity>
-                <FontAwesome5 name='folder-plus' color='white' size={32} onPress={()=> navegation.navigate('Cadastro')}></FontAwesome5>
+                <FontAwesome5 name='folder-plus' color='#591DA9' size={70} onPress={()=> navegation.navigate('Cadastrar')}></FontAwesome5>
             </TouchableOpacity>
+            <Text>Catalogo de filme:</Text>
             <TouchableOpacity style={styles.buttonTouchable}  >
-                <FontAwesome5 name='list-ul' color='white' size={32} onPress={() => navegation.navigate('Lista')}></FontAwesome5>
+                <FontAwesome5 name='film' color='#591DA9' size={70} onPress={() => navegation.navigate('Lista')}></FontAwesome5>
             </TouchableOpacity>
+            <Text>Pesquisar sobre um filme:</Text>
            <TouchableOpacity>
-            <FontAwesome5 name='search' color='white' size={32} onPress={()=> navegation.navigate('Pesquisa')}></FontAwesome5>
+            <FontAwesome5 name='search' color='#591DA9' size={70} onPress={()=> navegation.navigate('Pesquisar')}></FontAwesome5>
            </TouchableOpacity>
         </SafeAreaView>
     )
@@ -24,8 +27,14 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'gray',
+        backgroundColor: '#CB98ED',
         alignItems: 'center',
         justifyContent: 'center',
+        gap:5
     },
+    text:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom:80
+    }
 });

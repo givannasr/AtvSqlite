@@ -54,8 +54,8 @@ export default function Lista() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Catalogo de Filmes</Text>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <Text style={styles.title}>Catalogo de Filmes</Text>
+            <ScrollView style={styles.input}>
                 <View style={styles.containerScroll}>
                     {
                         registros.map(item => (
@@ -70,6 +70,7 @@ export default function Lista() {
                     }
                 </View>
             </ScrollView>
+            <View style={styles.alignLeft}>
             <TouchableOpacity title='deletaDatabase' onPress={() => {
                 Alert.alert(
                     "Atenção!",
@@ -86,9 +87,12 @@ export default function Lista() {
                     ],
                 )
             }} >
-                <FontAwesome6 name='trash-can' color='black' size={50}></FontAwesome6>
+                <FontAwesome6 name='trash-can' color='red' size={40}></FontAwesome6>
             </TouchableOpacity>
-            <Button title='Voltar para Home' onPress={() => navegation.navigate('Home')}></Button>
+            <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
+            <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
+            </TouchableOpacity>
+            </View>
         </SafeAreaView>
     )
 }
@@ -96,8 +100,47 @@ export default function Lista() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //   backgroundColor: '#fff',
+        backgroundColor: '#CB98ED',
         alignItems: 'center',
         justifyContent: 'center',
+        gap:5
+    },
+    cardTitle: {
+        paddingBottom: 30,
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    input: {
+        borderWidth: 15,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 15,
+        width: 300,
+        height: '40%',
+        borderWidth: 2,
+        flexGrow: 1,
+        gap:10,
+        marginEnd:5
+    },
+    filmeItem:{
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 15,
+        gap:5,
+        marginTop:10
+    },
+    alignLeft: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '80%',
+        alignSelf: 'auto',
+        paddingLeft: '30%',
+        gap:25,
+        flexDirection:'row',
+        justifyContent:'flex-start',
     },
 });

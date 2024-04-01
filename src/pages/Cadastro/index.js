@@ -9,7 +9,7 @@ import { DatabaseConnection } from '../Config/db';
 
 const db = new DatabaseConnection.getConnection;
 
-export default function Cadastro() {
+export default function Cadastrar() {
     const navegation = useNavigation();
     const [nome, setNome] = useState(null);
     const [registros, setRegistros] = useState([]);
@@ -81,7 +81,7 @@ export default function Cadastro() {
 
     const deletarFilme = (id) => {
         db.transaction(tx => {
-            tx.executeSql('DELETE FROM clientes WHERE id=?;',
+            tx.executeSql('DELETE FROM filmes WHERE id=?;',
                 [id],
                 (_, { rowsAffected }) => {
                     if (rowsAffected > 0) {
@@ -119,40 +119,40 @@ export default function Cadastro() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Cadastro de Filmes</Text>
+
             <View style={styles.container}>
-                <Text style={styles.title}>Cadastro</Text>
-                <TextInput style={styles.input}
+                <Text style={styles.title}>Cadastro de Filmes</Text>
+                <TextInput style={styles.inputText}
                     value={nome}
                     onChangeText={setNome}
                     placeholder='Digite um Filme:'
                 />
                 {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /> */}
-                <TextInput style={styles.input}
+                <TextInput style={styles.inputText}
                     value={genero}
                     onChangeText={setGenero}
                     placeholder='Digite um Genero:'
                 />
-                <TextInput style={styles.input}
+                <TextInput style={styles.inputText}
                     value={classificacao}
                     onChangeText={setClassificacao}
-                    placeholder='Digite uma classificação:'
+                    placeholder='Digite a classificação etaria:'
                 />
 
-                <Button color={'#316064'} title={operacao === 'Incluir' ? 'Salvar Filme' : 'Salvar edição'} onPress={adicionaFilme} />
+                <Button color={'#591DA9'} title={operacao === 'Incluir' ? 'Salvar Filme' : 'Salvar edição'} onPress={adicionaFilme} />
 
-                <Text>Catalogo de Filmes</Text>
+                <Text style={styles.cardTitle}>Catalogo de Filmes</Text>
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={styles.containerScroll}>
                         {
                             registros.map(item => (
-                                <View key={item.id} style={styles.filmeItem}>
+                                <View key={item.id} style={styles.input}>
                                     <Text>{item.id}</Text>
                                     <Text>{item.nome_filme}</Text>
                                     <Text>{item.genero}</Text>
                                     <Text>{item.classificacao}</Text>
                                     <Text>{item.data_cad}</Text>
-                                    <View style={styles.buttonTable}>
+                                    <View style={styles.alignLeft}>
                                         <TouchableOpacity title='delet' onPress={() => {
                                             Alert.alert(
                                                 "Atenção!",
@@ -169,12 +169,12 @@ export default function Cadastro() {
                                                 ],
                                             )
                                         }} >
-                                            <FontAwesome6 name='trash-can' color='black' size={20}></FontAwesome6>
+                                            <FontAwesome6 name='trash-can' color='red' size={20}></FontAwesome6>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => {
                                             buttonPress(item.nome), setId(item.id), setOperacao('Editar')
                                         }}>
-                                            <FontAwesome6 name='pen-to-square' color='gray' size={20}></FontAwesome6>
+                                            <FontAwesome6 name='pen-to-square' color='#591DA9' size={20}></FontAwesome6>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -186,7 +186,9 @@ export default function Cadastro() {
 
 
             </View>
-            <Button title='Voltar para Home' onPress={() => navegation.navigate('Home')}></Button>
+            <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
+            <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }
@@ -197,8 +199,56 @@ export default function Cadastro() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //   backgroundColor: '#fff',
+        backgroundColor: '#CB98ED',
         alignItems: 'center',
         justifyContent: 'center',
+        gap: 10,
+        padding:10
+    },
+    inputText: {
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 5,
+        width:300,
+        height:'5%'
+    },
+    cardTitle: {
+        paddingTop: 30,
+        alignItems: 'center'
+
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 15,
+        width:300,
+        height:'40%',
+        borderWidth: 2
+
+    },
+    containerScroll:{
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 15,
+        width:300,
+        height:'95%',
+        borderWidth: 2
+    },
+    alignLeft: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '80%',
+        alignSelf: 'auto',
+        paddingLeft: '70%',
+        gap:5,
+        flexDirection:'row',
+        justifyContent:'flex-start',
     },
 });
