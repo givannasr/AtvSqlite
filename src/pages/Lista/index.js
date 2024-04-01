@@ -56,7 +56,7 @@ export default function Lista() {
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Catalogo de Filmes</Text>
             <ScrollView style={styles.input}>
-                <View style={styles.containerScroll}>
+                <View>
                     {
                         registros.map(item => (
                             <View key={item.id} style={styles.filmeItem}>
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#CB98ED',
         alignItems: 'center',
         justifyContent: 'center',
-        gap:5
+        gap:5,
+        
     },
     cardTitle: {
         paddingBottom: 30,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         flexGrow: 1,
         gap:10,
-        marginEnd:5
+        margin:10
     },
     filmeItem:{
         borderWidth: 1,

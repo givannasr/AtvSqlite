@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderRadius: 5,
         padding: 15,
-        width: 300,
-        height: '40%',
+        width: 270,
+        height: 120,
         borderWidth: 2,
         justifyContent: 'center',
         margin: 5
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'black',
         borderRadius: 20,
-        padding: 20,
+        padding: 10,
         width: '100%',
         height: '100%',
         alignItems: 'center',
@@ -249,4 +249,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
     },
-});
+});0
