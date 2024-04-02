@@ -36,32 +36,34 @@ export default function Pesquisar() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.alignLeft}>
-            <TextInput
-                ref={inputNome}
-                onChangeText={setNomePesq}
-                placeholder='Nome do Filme'
-                style={styles.inputText}
-            />
-            <TouchableOpacity title='Pesquisar'
-                onPress={() => getFilme()}>
-                <FontAwesome6 name='magnifying-glass' color='#591DA9' size={25}></FontAwesome6>
-            </TouchableOpacity>
+                <TextInput
+                    ref={inputNome}
+                    onChangeText={setNomePesq}
+                    placeholder='Nome do Filme'
+                    style={styles.inputText}
+                />
+                <TouchableOpacity title='Pesquisar'
+                    onPress={() => getFilme()}>
+                    <FontAwesome6 name='magnifying-glass' color='#591DA9' size={25}></FontAwesome6>
+                </TouchableOpacity>
             </View>
-            {filme.length > 0 && (
-                <View style={{ width: '80%' }}>
-                    {filme.map((f, index) => (
-                        <React.Fragment key={index}>
-                            <Text>ID do filme: {f.id}</Text>
-                            <Text>Nome do filme: {f.nome_filme}</Text>
-                            <Text>Genero do filme: {f.genero}</Text>
-                            <Text>Classificação do filme: {f.classificacao}</Text>
-                            <Text>Data de cadastro do filme: {f.data_cad}</Text>
-                        </React.Fragment>
-                    ))}
-                </View>
-            )}
+            <View style={styles.input}>
+                {filme.length > 0 && (
+                    <View style={{ width: '80%' }}>
+                        {filme.map((f, index) => (
+                            <React.Fragment key={index}>
+                                <Text>ID do filme: {f.id}</Text>
+                                <Text>Nome do filme: {f.nome_filme}</Text>
+                                <Text>Genero do filme: {f.genero}</Text>
+                                <Text>Classificação do filme: {f.classificacao}</Text>
+                                <Text>Data de cadastro do filme: {f.data_cad}</Text>
+                            </React.Fragment>
+                        ))}
+                    </View>
+                )}
+            </View>
             <TouchableOpacity title='VoltarHome'
-                style={{ marginTop: '95%' }}
+                style={{ marginTop: '65%' }}
                 onPress={() => navigation.navigate('Home')}>
                 <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
             </TouchableOpacity>
@@ -94,10 +96,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '85%',
-        gap:10,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        padding:5,
-        marginRight:30
+        gap: 10,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 20,
+        marginRight: 30,
+    },
+    input: {
+        borderWidth: 15,
+        borderColor: 'black',
+        borderRadius: 5,
+        padding: 15,
+        width: 300,
+        height: '40%',
+        borderWidth: 2,
+        flexGrow: 1,
+        gap: 10,
+        margin: 10
     },
 });
