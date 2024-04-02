@@ -37,6 +37,7 @@ export default function Cadastrar() {
             Alert.alert('Erro', 'insira um valor válido para o nome!');
             return;
         }
+
         if (operacao === 'Incluir') {
             const dataAtual = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
@@ -111,8 +112,10 @@ export default function Cadastrar() {
         atualizaLista();
     }, [])
 
-    const buttonPress = (nome) => {
+    const buttonPress = (nome, genero, classificacao) => {
         setNome(nome);
+        setGenero(genero);
+        setClassificacao(classificacao);
     }
 
 
@@ -171,7 +174,7 @@ export default function Cadastrar() {
                                             <FontAwesome6 name='trash-can' color='red' size={20}></FontAwesome6>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => {
-                                            buttonPress(item.nome), setId(item.id), setOperacao('Editar')
+                                            buttonPress(item.nome_filme, item.genero, item.classificacao), setId(item.id), setOperacao('Editar')
                                         }}>
                                             <FontAwesome6 name='pen-to-square' color='#591DA9' size={20}></FontAwesome6>
                                         </TouchableOpacity>
@@ -249,4 +252,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
     },
-});0
+}); 0
