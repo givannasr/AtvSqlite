@@ -23,9 +23,6 @@ export default function Pesquisar() {
             tx.executeSql(
                 'SELECT * FROM celulares WHERE modelo LIKE ? OR marca LIKE ?',
                 [`%${input}%`, `%${input}%`],
-                (_, { rows }) => {
-                    setModelo(rows._array);
-                },
                 error => {
                     console.error(error);
                 }
