@@ -1,6 +1,6 @@
 import { SafeAreaView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import { useNavigation, StackActions } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Home() {
     const navegation = useNavigation();
@@ -8,17 +8,21 @@ export default function Home() {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.text}>Bem-Vindo(a)</Text>
-            <Text>Cadastrar um novo filme:</Text>
+            <Text>Cadastrar um novo Celular:</Text>
             <TouchableOpacity>
                 <FontAwesome5 name='folder-plus' color='#591DA9' size={70} onPress={()=> navegation.navigate('Cadastrar')}></FontAwesome5>
             </TouchableOpacity>
-            <Text>Catalogo de filme:</Text>
+            <Text>Celulares cadastrados:</Text>
             <TouchableOpacity style={styles.buttonTouchable}  >
-                <FontAwesome5 name='film' color='#591DA9' size={70} onPress={() => navegation.navigate('Lista')}></FontAwesome5>
+                <FontAwesome5 name='phone' color='#591DA9' size={70} onPress={() => navegation.navigate('Lista')}></FontAwesome5>
             </TouchableOpacity>
-            <Text>Pesquisar sobre um filme:</Text>
+            <Text>Pesquisar sobre um celular:</Text>
            <TouchableOpacity>
             <FontAwesome5 name='search' color='#591DA9' size={70} onPress={()=> navegation.navigate('Pesquisar')}></FontAwesome5>
+           </TouchableOpacity>
+           <Text>Editar ou excluir um celular:</Text>
+           <TouchableOpacity>
+            <FontAwesome5 name='pen-to-square' color='#591DA9' size={70} onPress={()=> navegation.navigate('EditarouExcluir')}></FontAwesome5>
            </TouchableOpacity>
         </SafeAreaView>
     )

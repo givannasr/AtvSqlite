@@ -1,6 +1,6 @@
 import {
-    Button, StyleSheet, Text, View, TextInput, Alert, SafeAreaView,
-    Platform, ScrollView, TouchableOpacity
+    StyleSheet, Text, View, Alert, SafeAreaView,
+    ScrollView, TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { DatabaseConnection } from '../Config/db';
@@ -14,7 +14,7 @@ export default function Lista() {
     const [registros, setRegistros] = useState([]);
     const atualizaLista = () => {
         db.transaction(tx => {
-            tx.executeSql('SELECT * FROM filmes;',
+            tx.executeSql('SELECT * FROM celulares;',
                 [],
                 (_, { rows }) => {
                     setRegistros(rows._array)
@@ -54,16 +54,18 @@ export default function Lista() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Catalogo de Filmes</Text>
+            <Text style={styles.title}>Celulares cadastrados:</Text>
             <ScrollView style={styles.input}>
                 <View>
                     {
                         registros.map(item => (
                             <View key={item.id} style={styles.filmeItem}>
                                 <Text>{item.id}</Text>
-                                <Text>{item.nome_filme}</Text>
-                                <Text>{item.genero}</Text>
-                                <Text>{item.classificacao}</Text>
+                                <Text>{item.modelo}</Text>
+                                <Text>{item.marca}</Text>
+                                <Text>{item.memoria}</Text>
+                                <Text>{item.armazenamento}</Text>
+                                <Text>{item.ano_lancamento}</Text>
                                 <Text>{item.data_cad}</Text>
                             </View>
                         ))
@@ -71,27 +73,27 @@ export default function Lista() {
                 </View>
             </ScrollView>
             <View style={styles.alignLeft}>
-            <TouchableOpacity title='deletaDatabase' onPress={() => {
-                Alert.alert(
-                    "Atenção!",
-                    'Deseja excluir o banco de dados do sistema? Esta ação não podera ser desfeita!',
-                    [
-                        {
-                            text: 'Sim',
-                            onPress: () => deletaDatabase()
-                        },
-                        {
-                            text: 'Cancelar',
-                            onPress: () => { return }
-                        }
-                    ],
-                )
-            }} >
-                <FontAwesome6 name='trash-can' color='red' size={40}></FontAwesome6>
-            </TouchableOpacity>
-            <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
-            <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
-            </TouchableOpacity>
+                <TouchableOpacity title='deletaDatabase' onPress={() => {
+                    Alert.alert(
+                        "Atenção!",
+                        'Deseja excluir o banco de dados do sistema? Esta ação não podera ser desfeita!',
+                        [
+                            {
+                                text: 'Sim',
+                                onPress: () => deletaDatabase()
+                            },
+                            {
+                                text: 'Cancelar',
+                                onPress: () => { return }
+                            }
+                        ],
+                    )
+                }} >
+                    <FontAwesome6 name='trash-can' color='red' size={40}></FontAwesome6>
+                </TouchableOpacity>
+                <TouchableOpacity title='VoltarHome' onPress={() => navegation.navigate('Home')}>
+                    <FontAwesome6 name='house-user' color='#591DA9' size={40}></FontAwesome6>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
@@ -103,8 +105,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#CB98ED',
         alignItems: 'center',
         justifyContent: 'center',
-        gap:5,
-        
+        gap: 5,
+
     },
     cardTitle: {
         paddingBottom: 30,
@@ -123,16 +125,16 @@ const styles = StyleSheet.create({
         height: '40%',
         borderWidth: 2,
         flexGrow: 1,
-        gap:10,
-        margin:10
+        gap: 10,
+        margin: 10
     },
-    filmeItem:{
+    filmeItem: {
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 5,
         padding: 15,
-        gap:5,
-        marginTop:10
+        gap: 5,
+        marginTop: 10
     },
     alignLeft: {
         alignItems: 'center',
@@ -140,8 +142,8 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'auto',
         paddingLeft: '30%',
-        gap:25,
-        flexDirection:'row',
-        justifyContent:'flex-start',
+        gap: 25,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
 });

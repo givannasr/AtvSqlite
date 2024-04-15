@@ -8,23 +8,23 @@ const db = new DatabaseConnection.getConnection;
 
 export default function Pesquisar() {
     const navigation = useNavigation();
-    const [filme, setFilme] = useState([]);
+    const [input, setInput] = useState([]);
     const [nomePesq, setNomePesq] = useState('');
     const inputNome = useRef(null);
 
     useEffect(() => {
         if (nomePesq) {
-            getFilme();
+            getCelular();
         }
     }, [nomePesq]);
 
-    async function getFilme() {
+    async function getCelular() {
         db.transaction(tx => {
             tx.executeSql(
-                'SELECT * FROM filmes WHERE nome_filme LIKE ?',
-                [nomePesq],
+                'SELECT * FROM celulares WHERE modelo LIKE ? OR marca LIKE ?',
+                [`%${input}%`, `%${input}%`],
                 (_, { rows }) => {
-                    setFilme(rows._array);
+                    setModelo(rows._array);
                 },
                 error => {
                     console.error(error);
@@ -39,24 +39,26 @@ export default function Pesquisar() {
                 <TextInput
                     ref={inputNome}
                     onChangeText={setNomePesq}
-                    placeholder='Nome do Filme'
+                    placeholder='Nome do Modelo ou Marca do celular procurado:'
                     style={styles.inputText}
                 />
                 <TouchableOpacity title='Pesquisar'
-                    onPress={() => getFilme()}>
+                    onPress={() => getCelular()}>
                     <FontAwesome6 name='magnifying-glass' color='#591DA9' size={25}></FontAwesome6>
                 </TouchableOpacity>
             </View>
             <View style={styles.input}>
-                {filme.length > 0 && (
+                {celular.length > 0 && (
                     <View style={{ width: '80%' }}>
-                        {filme.map((f, index) => (
+                        {celular.map((item, index) => (
                             <React.Fragment key={index}>
-                                <Text>ID do filme: {f.id}</Text>
-                                <Text>Nome do filme: {f.nome_filme}</Text>
-                                <Text>Genero do filme: {f.genero}</Text>
-                                <Text>Classificação do filme: {f.classificacao}</Text>
-                                <Text>Data de cadastro do filme: {f.data_cad}</Text>
+                                <Text>ID do celular: {item.id}</Text>
+                                <Text>Modelo do celular: {item.modelo}</Text>
+                                <Text>Marca do celular: {item.marca}</Text>
+                                <Text>Memoria RAM do celular: {item.memoria}</Text>
+                                <Text>Armazenamento do celular: {item.armazenamento}</Text>
+                                <Text>Ano de Lançamento do celular:{item.ano_lancamento}</Text>
+                                <Text>Data de cadastro:{item.data_cad}</Text>
                             </React.Fragment>
                         ))}
                     </View>

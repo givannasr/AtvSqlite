@@ -4,6 +4,7 @@ import Home from './src/pages/Home';
 import Lista from './src/pages/Lista'
 import Cadastro from './src/pages/Cadastro';
 import Pesquisa from './src/pages/Pesquisa';
+import EditarouExcluir from './src/pages/EditarouExcluir';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,10 @@ export default function App() {
         <Stack.Screen
           name='Pesquisar'
           component={Pesquisa}
+        />
+        <Stack.Screen
+          name='EditarouExcluir'
+          component={EditarouExcluir}
         />
       </Stack.Navigator>
     </NavigationContainer>
